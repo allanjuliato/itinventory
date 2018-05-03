@@ -10,7 +10,7 @@ export default props => {
             <tr key={user._id}>
                 <td>{user.nameUser}</td>
                 <td>
-                    <IconButton style='primary' icon='eye-open' onClick={props.onOpenModalView}></IconButton>
+                    <IconButton style='primary' icon='eye-open' onClick={() => props.handleView(user)}></IconButton>
                     <IconButton style='info' icon='link' onClick={() => props.handleLink(user)}></IconButton>
                     <IconButton style='warning' icon='pencil' onClick={() => props.handleAlter(user)}></IconButton>
                 </td>

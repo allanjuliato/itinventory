@@ -26,6 +26,7 @@ export default class User extends Component {
             location:'',
             hiringDate:'',
             list: [], 
+            listView: [],
             openAdd: false, 
             openView: false
         }
@@ -46,6 +47,7 @@ export default class User extends Component {
         this.handleSearch = this.handleSearch.bind(this)
         this.handleClear = this.handleClear.bind(this)
         this.handleRemove = this.handleRemove.bind(this)
+        this.handleView = this.handleView.bind(this)
         //End Actions
 
         //Start Modal
@@ -112,12 +114,17 @@ export default class User extends Component {
         
         toast.success("User Added Successfully!", {
             position: toast.POSITION.TOP_LEFT,
-            autoClose: 5000
+            autoClose: 3000
         })
     }
 
     handleRemove(user) {
-        axios.delete(`${URL}/${user._id}`).then(resp => this.refresh())
+        axios.get(`${URL}/${user._id}`).then(resp => this.refresh())
+    }
+
+    handleView(user) {
+        axios.get(`${URL}?_id=${user._id}`).then(resp => this.setState({...this.state, listView:resp.data}))
+         this.onOpenModalView()
     }
 
     onOpenModal () {
@@ -168,7 +175,16 @@ export default class User extends Component {
                 </Modal>
 
                 <Modal open={this.state.openView} onClose={this.onCloseModalView} little>
-                    <UserView />
+                    <UserView
+                        handleChangeName={this.handleChangeName}
+                        handleChangeAccount={this.handleChangeAccount}
+                        handleChangeDevice={this.handleChangeDevice}
+                        handleChangeProject={this.handleChangeProject}
+                        handleChangeLocation={this.handleChangeLocation}
+                        handleChangeHiringDate={this.handleChangeHiringDate}
+                        onCloseModalView = {this.onCloseModalView}
+                        listView={this.state.listView}
+                    />
                 </Modal>
 
                 <PageHeader name='User' id='user'></PageHeader>
@@ -183,9 +199,10 @@ export default class User extends Component {
                     onCloseModal={this.onCloseModal}
                 />
                 <PageHeader name='User List'></PageHeader>
-                <UserList list={this.state.list}
+                <UserList 
+                    list={this.state.list}
                     handleRemove={this.handleRemove}
-
+                    handleView={this.handleView}
                     onOpenModalView={this.onOpenModalView}
                     onCloseModalView={this.onCloseModalView}
                 />
