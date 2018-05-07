@@ -30,6 +30,7 @@ export default props => {
                     className='form-control'
                     onChange={props.handleChangeDevice}
                     value={props.deviceName}>
+                    
                 </input>
                 <label>Project</label>
                 <input 
@@ -50,7 +51,8 @@ export default props => {
                     id='hiringDate' 
                     className='form-control'
                     onChange={props.handleChangeHiringDate}
-                    value={props.hiringDate}>
+                    value={props.hiringDate}
+                    type='date'>
                 </input>
             </div>
 

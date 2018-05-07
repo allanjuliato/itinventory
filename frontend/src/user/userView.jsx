@@ -3,6 +3,7 @@ import IconButton from '../template/iconButton'
 import UserAdd from './userAdd'
 
 export default props => {
+    
 
     const renderRows = () => {
         const listView = props.listView || []
@@ -14,7 +15,7 @@ export default props => {
                     <input 
                         id='nameUser' 
                         className='form-control' 
-                        onChange={props.handleChangeName}
+                        onChange={props.nameUser}
                         value={user.nameUser}>
                     </input>
                     <label>Account</label>
@@ -55,6 +56,7 @@ export default props => {
                     </input>
                 </div>
                 <div className='modal-actions'>
+                    <button className="btn btn-warning">Saved Edition</button>
                     <button onClick={props.onCloseModalView} className="btn btn-danger" id='btnExit'>Exit</button>
                 </div>
             </div>

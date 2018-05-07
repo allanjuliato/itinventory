@@ -176,6 +176,14 @@ export default class User extends Component {
 
                 <Modal open={this.state.openView} onClose={this.onCloseModalView} little>
                     <UserView
+
+                        nameUser={this.state.nameUser}
+                        account={this.state.account}
+                        deviceName={this.state.deviceName}
+                        project={this.state.project}
+                        location={this.state.location}
+                        hiringDate={this.state.hiringDate}
+
                         handleChangeName={this.handleChangeName}
                         handleChangeAccount={this.handleChangeAccount}
                         handleChangeDevice={this.handleChangeDevice}
